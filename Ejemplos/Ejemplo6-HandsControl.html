@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+
+AFRAME.registerComponent('thumbstick-logging',{
+  init: function () {
+    this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+  },
+  logThumbstick: function (evt) {
+    if (evt.detail.y > 0.95) { console.log("DOWN"); }
+    if (evt.detail.y < -0.95) { console.log("UP"); }
+    if (evt.detail.x < -0.95) { console.log("LEFT"); }
+    if (evt.detail.x > 0.95) { console.log("RIGHT"); }
+  }
+});
+    </script>
+   
+
+</head>
+<body>
+    <a-scene cursor="rayOrigin: mouse" background="color: #ECECEC">
+
+        <a-box position="-1 0.5 -3" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9" shadow></a-box>
+      
+        <a-sphere position="0 1.25 -5" radius="1.25" shadow color="#EF2D5E"></a-sphere>
+      
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+      
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+      
+        <!-- camera & hand controls -->
+      
+        <a-entity id="camera-rig">
+          <a-entity  camera position="0 1.6 0" wasd-controls look-controls></a-entity>
+          <!-- <a-entity  hand-controls="hand: left; handModelStyle: lowPoly; color: #FFCCCC"></a-entity>
+          <a-entity  hand-controls="hand: right; handModelStyle: lowPoly; color: #FFCCCC"></a-entity> -->
+          <a-entity oculus-touch-controls="hand: left" thumbstick-logging></a-entity>
+          <a-entity oculus-touch-controls="hand: right" thumbstick-logging></a-entity>
+        </a-entity>
+      
+      </a-scene>
+</body>
+</html>

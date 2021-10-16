@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+
+    
+    <a-scene >
+        <a-assets>
+            <img id="normal" src="Texturas/Normal.jpg">
+            <img id="texture" src="Texturas/base.jpg">
+            <img id="room" src="img/room.jpg">
+           
+        </a-assets>
+          
+      <a-box  
+            src="#texture"
+            normal-map="#normal"
+            roughness="0.8"
+            position="-1 0.5 -3" 
+            rotation="0 0 0" 
+            animation = "property: rotation; 
+                        to: 90 90 90; 
+                        dur: 2000; 
+                        easing: easeInQuad; 
+                        loop: true;
+                        elasticity:600;
+                        dir: alternate;"
+
+           >
+      </a-box>
+      
+      <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
+      <a-entity position="0 3 -4" geometry="primitive: box; width: 3" material="color: red"></a-entity>
+
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky src="#room" radius="100"></a-sky>
+      <a-camera position="2,2,2">
+        <a-cursor></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>
